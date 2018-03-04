@@ -7,7 +7,7 @@
  * <p>
  * All rights belong to the authors of the book.
  */
-package com.example.project;
+package com.example.stack;
 
 public class StackExercise {
 

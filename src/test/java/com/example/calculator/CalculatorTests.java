@@ -8,25 +8,24 @@
  * http://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project;
+package com.example.calculator;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DisplayName("Basic calculus")
-class CalculatorTests {
+class CalculatorTest {
 
     Calculator sut;
     static long startTime;
@@ -46,52 +45,51 @@ class CalculatorTests {
     //@Disabled
     //@EnabledOnJre(JRE.JAVA_11)
     @DisabledOnOs(OS.WINDOWS)
-    void add() {
+    void testWhenAdd() {
 
         assertEquals(2, sut.add(1, 1), "1 + 1 should equal 2");
     }
 
     @Test
-    void divide() throws NotDividedByZeroException {
+    @DisplayName("for diving by zero and throwing an exception")
+    void testWhenDivide() {
 
         NotDividedByZeroException calculatorException = assertThrows(NotDividedByZeroException.class, () -> sut.divide(2, 0));
         assertEquals(calculatorException.getMessage(), "Can't by zero!");
     }
 
     @Test
-    @DisplayName("subtract me")
-        //@Tag("my tag")
-    void subtract(TestInfo testInfo) {
-
-        assertEquals("subtract me", testInfo.getDisplayName());
-        // assertEquals("my tag", testInfo.getTags().iterator().next());
+    @DisplayName("subtract and displaying testInfo")
+    void testWhenSubtract(TestInfo testInfo) {
+        assertEquals("subtract and displaying testInfo", testInfo.getDisplayName());
+        assertEquals(10, sut.subtract(40, 30));
     }
 
-    // @Test
+
     @RepeatedTest(20)
-    void mutliply() {
-
-        sut.subtract(2, 2);
-
+    void testWhenMutliply() {
+        sut.multiply(2, 2);
     }
 
 
     @ParameterizedTest
     @ValueSource(ints = {5, 10, 15, 9})
-    void isDividedBy5(int a) {
-
+    void whenIsDividedBy5(int a) {
         assertEquals(0, sut.modulo(a, 5));
-
     }
 
     @ParameterizedTest
-    @CsvSource({"25,5", "9,3", "28, 4", "17, 17"})
-    @DisplayName("Divide")
-    void isDivideable(int a, int b, TestInfo testInfo) {
-
+    @CsvSource({"25,5", "9,3", "28, 4", "17, 16"})
+    @DisplayName("for checking divisibility")
+    void isDivisible(int a, int b) {
         assertEquals(0, sut.modulo(a, b));
+    }
 
-
+    @Test
+    @DisplayName("for checking two primes")
+    void isPrime() {
+        assertFalse(sut.isPrime(10));
+        assertTrue(sut.isPrime(13));
     }
 
     @ParameterizedTest
@@ -105,10 +103,42 @@ class CalculatorTests {
         return Stream.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 28);
     }
 
+    //TODO: add to classpath!!!!!!!!!!!!!!!!!!!!!!!
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "ABsum.csv", numLinesToSkip = 1, delimiter = ';')
+//    void testWhenAddingMultipleNumbersFromExternalFile(int a, int b, int sum) {
+//        assertEquals(sum, sut.add(a, b));
+//    }
+
+
+    @Tag("Priority1")
+    @Test
+    void testWhenMultiplyLargeNumber() {
+        assertEquals(400_000_000, sut.multiply(10_000, 40_000));
+    }
+
+
+    @Nested
+    @DisplayName("for negative numbers")
+    class NegativeNumbersTest {
+
+        @Test
+        @DisplayName("for adding")
+        void testWhenAddingNegative() {
+            assertEquals(-3, sut.add(-1, -2));
+        }
+
+        @Test
+        @DisplayName("for multiplying")
+        void testWhenMultiplyNegative() {
+            assertEquals(2, sut.multiply(-1, -2));
+        }
+    }
+
+
 
     @AfterEach
     void tearDown() {
-        sut = null;
     }
 
     @AfterAll

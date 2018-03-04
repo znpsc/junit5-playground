@@ -1,7 +1,10 @@
-package com.example.project;
+package com.example.fizzbuzz;
 
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.util.Locale;
@@ -22,10 +25,10 @@ class FizzBuzzProblemTest {
     @DisplayName("Some nested assertions when divided by 3 written with use of assertAll")
     void testWhenDividedBy3UsingAssertAll() {
         assertAll(
-                () -> assertEquals("Fizz", sut.getFizzBuzzNumber(3))
-                , () -> assertEquals("Fizz", sut.getFizzBuzzNumber(17))
-                , () -> assertEquals("Fizz", sut.getFizzBuzzNumber(99))
-                , () -> assertEquals("Fizz", sut.getFizzBuzzNumber(47))
+                () -> assertEquals("Fizz", sut.getFizzBuzzNumber(3)),
+                () -> assertEquals("Fizz", sut.getFizzBuzzNumber(17)),
+                () -> assertEquals("Fizz", sut.getFizzBuzzNumber(99)),
+                () -> assertEquals("Fizz", sut.getFizzBuzzNumber(47))
         );
     }
 
@@ -45,7 +48,7 @@ class FizzBuzzProblemTest {
         assertAll(
                 () -> assertTimeout(Duration.ofMillis(100), () -> {
                     assertEquals("Buzz", sut.getFizzBuzzNumber(5));
-                }) ,
+                }),
                 () -> assertTimeout(Duration.ofMillis(100), () -> {
                     Thread.sleep(200);
                     assertEquals("Buzz", sut.getFizzBuzzNumber(175));
@@ -60,9 +63,9 @@ class FizzBuzzProblemTest {
         assumeTrue(System.getProperty("os.name").startsWith("Windows"));
 
         assertAll(
-                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(15))
-                , () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(30))
-                , () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(150))
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(15)),
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(30)),
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(150))
         );
     }
 
@@ -73,9 +76,9 @@ class FizzBuzzProblemTest {
         assumeTrue(currentLocale.equals(Locale.FRENCH));
 
         assertAll(
-                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(15))
-                , () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(30))
-                , () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(150))
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(15)),
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(30)),
+                () -> assertEquals("FizzBuzz", sut.getFizzBuzzNumber(150))
         );
     }
 
