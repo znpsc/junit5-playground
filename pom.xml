@@ -76,10 +76,11 @@
                         <include>**/*Tests.java</include>
                         <include>**/*TestCase.java</include>
                     </includes>
-                    <!--<properties>-->
-                        <!--&lt;!&ndash;<excludeTags>Priority1</excludeTags>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<includeTags>Priority1</includeTags>&ndash;&gt;-->
-                    <!--</properties>-->
+                    <properties>
+                        <!--<excludeTags>Priority1</excludeTags>-->
+                        <includeTags>csvFileOnly</includeTags>
+                        <includeTags>nested</includeTags>
+                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>

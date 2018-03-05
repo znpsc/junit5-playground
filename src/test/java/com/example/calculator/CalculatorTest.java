@@ -86,7 +86,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("for checking two primes")
+    @DisplayName("for checking two primes \uD83D\uDE31 ╯°□°）╯")
     void isPrime() {
         assertFalse(sut.isPrime(10));
         assertTrue(sut.isPrime(13));
@@ -103,13 +103,13 @@ class CalculatorTest {
         return Stream.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 28);
     }
 
-    //TODO: add to classpath!!!!!!!!!!!!!!!!!!!!!!!
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "ABsum.csv", numLinesToSkip = 1, delimiter = ';')
-//    void testWhenAddingMultipleNumbersFromExternalFile(int a, int b, int sum) {
-//        assertEquals(sum, sut.add(a, b));
-//    }
-
+    @ParameterizedTest
+    @CsvFileSource(resources = "/ABsum.csv", numLinesToSkip = 1, delimiter = ';')
+    @Tag("csvFileOnly")
+    @DisplayName("When adding multiple numbers from external file")
+    void testWhenAddingMultipleNumbersFromExternalFile(int a, int b, int sum) {
+        assertEquals(sum, sut.add(a, b));
+    }
 
     @Tag("Priority1")
     @Test
@@ -120,6 +120,7 @@ class CalculatorTest {
 
     @Nested
     @DisplayName("for negative numbers")
+    @Tag("nested")
     class NegativeNumbersTest {
 
         @Test
@@ -135,8 +136,6 @@ class CalculatorTest {
         }
     }
 
-
-
     @AfterEach
     void tearDown() {
     }
@@ -146,6 +145,4 @@ class CalculatorTest {
         long endTime = System.currentTimeMillis();
         System.out.print("Execution time: " + (endTime - startTime) + " ms");
     }
-
-
 }
