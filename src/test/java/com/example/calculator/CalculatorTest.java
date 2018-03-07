@@ -71,44 +71,11 @@ class CalculatorTest {
         sut.multiply(2, 2);
     }
 
-
-    @ParameterizedTest
-    @ValueSource(ints = {5, 10, 15, 9})
-    void whenIsDividedBy5(int a) {
-        assertEquals(0, sut.modulo(a, 5));
-    }
-
-    @ParameterizedTest
-    @CsvSource({"25,5", "9,3", "28, 4", "17, 16"})
-    @DisplayName("for checking divisibility")
-    void isDivisible(int a, int b) {
-        assertEquals(0, sut.modulo(a, b));
-    }
-
     @Test
     @DisplayName("for checking two primes \uD83D\uDE31 ╯°□°）╯")
     void isPrime() {
         assertFalse(sut.isPrime(10));
         assertTrue(sut.isPrime(13));
-    }
-
-    @ParameterizedTest
-    @MethodSource("first10PrimesProvider")
-    void isPrime(int prime) {
-
-        assertTrue(sut.isPrime(prime));
-    }
-
-    static Stream<Integer> first10PrimesProvider() {
-        return Stream.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 28);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/ABsum.csv", numLinesToSkip = 1, delimiter = ';')
-    @Tag("csvFileOnly")
-    @DisplayName("When adding multiple numbers from external file")
-    void testWhenAddingMultipleNumbersFromExternalFile(int a, int b, int sum) {
-        assertEquals(sum, sut.add(a, b));
     }
 
     @Tag("Priority1")
