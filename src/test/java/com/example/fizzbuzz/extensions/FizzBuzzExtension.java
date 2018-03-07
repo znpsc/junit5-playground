@@ -10,8 +10,11 @@ public class FizzBuzzExtension implements ParameterResolver{
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
 
 
+//        Class<?> type = parameterContext.getParameter().getType();
+//        parameterContext.getParameter().getParameterizedType().getTypeName();
+//        System.out.println(type);
 
-        return parameterContext.getParameter().getType() == Integer.class;
+        return false;
     }
 
     @Override

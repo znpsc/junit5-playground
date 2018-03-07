@@ -18,7 +18,7 @@ public class CalculatorEnvironmentExtension implements ExecutionCondition {
                 .map(e -> e.type())
                 .filter(e -> e.equals(CalculatorEnvironment.Type.PRODUCTION));
         if (optionalType.isPresent()) {
-            return ConditionEvaluationResult.disabled("production test are disabled");
+            return ConditionEvaluationResult.disabled("production tests are disabled");
         }
 
         return ConditionEvaluationResult.enabled("enabling test");

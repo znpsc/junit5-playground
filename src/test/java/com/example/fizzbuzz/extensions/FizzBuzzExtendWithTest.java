@@ -2,7 +2,6 @@ package com.example.fizzbuzz.extensions;
 
 import com.example.fizzbuzz.FizzBuzzProblem;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,27 +20,23 @@ public class FizzBuzzExtendWithTest {
         sut = new FizzBuzzProblem();
     }
 
-    @Test
- //   @ParameterizedTest
-    //@MethodSource("invalidIntegers")
-    void testFizzNumbers(int number) {
-
+    @ParameterizedTest
+    @MethodSource("fizzNumbers")
+    void testFizzNumbers(Integer number) {
         assertEquals("Fizz", sut.getFizzBuzzNumber(number));
     }
 
-    @Test
- //  @ParameterizedTest
-   // @MethodSource("validIntegers")
+    @ParameterizedTest
+    @MethodSource("buzzNumbers")
     void testBuzzNumbers(int number) {
-
         assertEquals("Buzz", sut.getFizzBuzzNumber(number));
     }
 
-    Stream<Number> invalidIntegers() {
-        return Stream.of(3, 9, 0.7, 18);
+    static Stream<Number> fizzNumbers() {
+        return Stream.of(3, 9, 12, 18);
     }
 
-    Stream<Number> validIntegers() {
-        return Stream.of(5, 10, 15);
+    static Stream<Number> buzzNumbers() {
+        return Stream.of(5, 10, 25);
     }
 }
