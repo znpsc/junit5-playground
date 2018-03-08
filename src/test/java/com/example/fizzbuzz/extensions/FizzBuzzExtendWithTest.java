@@ -28,8 +28,9 @@ public class FizzBuzzExtendWithTest {
 
     @ParameterizedTest
     @MethodSource("buzzNumbers")
-    void testBuzzNumbers(int number) {
-        assertEquals("Buzz", sut.getFizzBuzzNumber(number));
+    void testBuzzNumbers(Double number) {
+        int value = number.intValue();
+        assertEquals("Buzz", sut.getFizzBuzzNumber(value));
     }
 
     static Stream<Number> fizzNumbers() {
@@ -37,6 +38,6 @@ public class FizzBuzzExtendWithTest {
     }
 
     static Stream<Number> buzzNumbers() {
-        return Stream.of(5, 10, 25);
+        return Stream.of(5.5, 10.2, 25.5);
     }
 }

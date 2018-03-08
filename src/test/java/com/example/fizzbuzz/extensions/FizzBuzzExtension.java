@@ -8,17 +8,13 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 public class FizzBuzzExtension implements ParameterResolver{
     @Override
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-
-
-//        Class<?> type = parameterContext.getParameter().getType();
-//        parameterContext.getParameter().getParameterizedType().getTypeName();
-//        System.out.println(type);
-
-        return false;
+        return parameterContext.getParameter().getType() != Integer.class;
     }
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+
+        //????!!!!
         return null;
     }
 }

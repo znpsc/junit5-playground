@@ -67,7 +67,7 @@ class CalculatorTest {
 
 
     @RepeatedTest(20)
-    void testWhenMutliply() {
+    void testWhenMultiply() {
         sut.multiply(2, 2);
     }
 
