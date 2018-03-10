@@ -1,6 +1,6 @@
-package com.example.fizzbuzz.extensions;
+package com.example.fizzbuzz;
 
-import com.example.fizzbuzz.FizzBuzzProblem;
+import com.example.fizzbuzz.extensions.FizzBuzzTimeMeasurementExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,16 +15,18 @@ public class FizzBuzzTimingTest {
     @BeforeEach
     void setUp() throws InterruptedException {
         sut = new FizzBuzzProblem();
-        Thread.sleep(1000);
+        Thread.sleep(1000); //cheating
     }
 
     @Test
-    void testFizzNumbers() {
+    void testFizzNumbers() throws InterruptedException {
         assertEquals("Fizz", sut.getFizzBuzzNumber(3));
+        Thread.sleep(500); //cheating
     }
 
     @Test
-    void testBuzzNumbers() {
+    void testBuzzNumbers() throws InterruptedException {
         assertEquals("Buzz", sut.getFizzBuzzNumber(25));
+        Thread.sleep(500); //cheating
     }
 }
