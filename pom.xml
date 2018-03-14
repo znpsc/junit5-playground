@@ -77,8 +77,8 @@
                     </includes>
                     <properties>
                         <!--<excludeTags>Priority1</excludeTags>-->
-                        <includeTags>csvFileOnly</includeTags>
-                        <includeTags>nested</includeTags>
+                        <!--<includeTags>csvFileOnly</includeTags>-->
+                        <includeTags>customTag</includeTags>
                     </properties>
                 </configuration>
                 <dependencies>
