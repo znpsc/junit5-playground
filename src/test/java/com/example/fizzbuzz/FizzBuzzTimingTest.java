@@ -19,17 +19,20 @@ public class FizzBuzzTimingTest {
     }
 
     @Test
-    void shouldReturnFizz() {
+    void shouldReturnFizz() throws InterruptedException {
         assertEquals("Fizz", sut.getFizzBuzzNumber(3));
+        Thread.sleep(100);
     }
 
     @Test
-    void shouldReturnBuzz() {
+    void shouldReturnBuzz() throws InterruptedException {
         assertEquals("Buzz", sut.getFizzBuzzNumber(5));
+        Thread.sleep(100);
     }
 
     @Test
-    void shouldReturnFizzBuzz() {
+    void shouldReturnFizzBuzz() throws InterruptedException {
         assertEquals("FizzBuzz", sut.getFizzBuzzNumber(15));
+        Thread.sleep(100);
     }
 }
